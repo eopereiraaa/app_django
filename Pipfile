@@ -10,6 +10,7 @@ django-environ = "*"
 sqlparse = "*"
 pytz = "*"
 whitenoise = "*"
+gunicorn = "*"
 
 [dev-packages]
 
