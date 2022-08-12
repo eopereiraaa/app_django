@@ -34,7 +34,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-w+b@#!i$u9oza2g^2e$d8lbr^q@8i!pb1fjf3@^om&flxw1*v='
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with debug turned on in producon!
 DEBUG = True
 
 ALLOWED_HOSTS = ['*', 'pi-jv.herokuapp.com']

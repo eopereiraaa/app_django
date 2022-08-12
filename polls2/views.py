@@ -69,3 +69,35 @@ def conversor(request):
             'form': form,
         }
     )
+
+
+from django.views import View
+
+
+class FirstCBView(View):
+    template = 'polls2/conversor.html'
+
+    def __render(self, context, request):
+        return render(request=request,
+                      template_name=self.template,
+                      context=context
+                      )
+
+    def post(self, request):
+        form = Conversor(request.POST)
+        if form.is_valid():
+            print("OS DADOS SÃO VÁLIDOS!!!")
+            return self.__render(request=request,
+                                 context={'form': form}
+                                 )
+
+    def get(self, request):
+        print("[CLASS] ENTROU AQUI NA VIEW!!")
+        form = Conversor()
+        return self.__render(request=request,
+                             context={'form': form}
+                             )
+
+
+class SecondConversor(FirstCBView):
+    template = 'polls2/conversor_2.html'

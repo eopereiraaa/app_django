@@ -5,14 +5,14 @@ from django.db import models
 # ORM => Object Relationship Manager
 
 
-# Ele automaticamente define o nome da tabela com o seguinte formato: <app>_<nome_da_clase_minusculo>
-# 1. Criar/modificar ou eliminar uma clase modelo
-# 2. Criar a migracao
-# 3. Executar a migracao
+# Ele automaticamente define o nome da tabela com o seguinte formato: <app>_<nome_da_classe_minúsculo>
+# 1. Criar/modificar ou eliminar uma classe modelo
+# 2. Criar a migração
+# 3. Executar a migração
 class Category(models.Model):
 
     # Definir uma tabela no banco de dados
-    # [E utilizada pelo sistema de migracoes para aplicar cambios no banco de dados.
+    # É utilizada pelo sistema de migracoes para aplicar cambios no banco de dados.
     # Criar registros em forma de instancias da clase
     # A possibilidade de fazer CONSULTAS no banco de dados usando um MANAGER (.objects)
 
