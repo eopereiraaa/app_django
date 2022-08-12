@@ -120,6 +120,8 @@ class ConversorSuperPower(FormView):
 
 
 from .models import Category
+
+
 def lista_categorias(request):
     categorias = Category.objects.all()
     return render(
@@ -141,5 +143,13 @@ def create_categoria(request):
     return render(
         request=request,
         template_name='polls2/create_categoria.html',
-        context={'form':form},
+        context={'form': form},
     )
+
+
+def detail_categoria(request, id):
+    categoria = Category.objects.get(category_id=id)
+    return render(request=request,
+                  template_name='polls2/detail_categoria.html',
+                  context={'categoria': categoria},
+                  )
