@@ -33,5 +33,5 @@ class CategoryForm(forms.ModelForm):
         model = Category
         fields = '__all__'
         #exclude = (
-       #     'category_id',
+        #    'category_id',
         #)

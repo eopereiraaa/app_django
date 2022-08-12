@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 
 # Create your views here.
+from django.urls import reverse_lazy
+
 
 def index(request):
     return HttpResponse("Hello World")
@@ -121,35 +123,47 @@ class ConversorSuperPower(FormView):
 
 from .models import Category
 
-
-def lista_categorias(request):
-    categorias = Category.objects.all()
-    return render(
-        request=request,
-        template_name='polls2/lista_categorias.html',
-        context={'categorias': categorias}
-    )
+from django.views.generic import ListView, CreateView, DetailView
 
 
-def create_categoria(request):
-    from .forms import CategoryForm
-    if request.method == 'POST':
-        form = CategoryForm(request.POST)
+class ListaCategoria(ListView):
+    model = Category
+    template_name = 'polls2/lista_categorias.html'
+    context_object_name = 'categorias'
+
+
+class CreateCategoria(CreateView):
+    form_class = CategoryForm
+    template_name = 'polls2/create_categoria.html'
+    success_url = reverse_lazy('lista_categorias')
+
+
+class DetailCategoria(DetailView):
+    model = Category
+    template_name = 'polls2/detail_categoria.html'
+    pk_url_kwarg = 'id'
+    context_object_name = 'categoria'
+
+
+def update_categoria(request, id):
+    categoria = Category.objects.get(category_id=id)
+    if request.method == 'GET':
+        form = CategoryForm(instance=categoria)
+    elif request.method == 'POST':
+        form = CategoryForm(request.POST, instance=categoria)
         if form.is_valid():
             form.save()
-            print("DADOS VALIDADOS!!!")
-    else:
-        form = CategoryForm()
+            print("ATUALIZADO!!!")
+            return redirect('lista_categorias')
+
     return render(
-        request=request,
+        request,
         template_name='polls2/create_categoria.html',
-        context={'form': form},
+        context={'form': form, 'update': True, 'categoria': categoria},
     )
 
 
-def detail_categoria(request, id):
+def delete_categoria(request, id):
     categoria = Category.objects.get(category_id=id)
-    return render(request=request,
-                  template_name='polls2/detail_categoria.html',
-                  context={'categoria': categoria},
-                  )
+    categoria.delete()
+    return redirect('lista_categorias')

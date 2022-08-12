@@ -1,5 +1,5 @@
-
 from django.db import models
+
 
 # Create your models here.
 # ORM => Object Relationship Manager
@@ -10,7 +10,6 @@ from django.db import models
 # 2. Criar a migração
 # 3. Executar a migração
 class Category(models.Model):
-
     # Definir uma tabela no banco de dados
     # É utilizada pelo sistema de migracoes para aplicar cambios no banco de dados.
     # Criar registros em forma de instancias da clase
@@ -22,9 +21,13 @@ class Category(models.Model):
     rating = models.PositiveIntegerField(null=True)
     last_update = models.DateTimeField(null=False, auto_now=True)
 
-
     def __str__(self):
         return self.name
+
+
+class Filme(models.Model):
+    pass
+
 
 """ 
 CREATE TABLE category 

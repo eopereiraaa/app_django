@@ -12,7 +12,9 @@ urlpatterns = [
     path('index_new/', views.IndexView.as_view(), name='index_new'),
     path('index_refactor/', views.TemplateView.as_view(template_name='index.html'), name='index_refactor'),
     path('power_conversor/', views.ConversorSuperPower.as_view(), name='power_conversor'),
-    path('categorias/', views.lista_categorias, name='lista_categorias'),
-    path('categorias/new/', views.create_categoria, name='create_categoria'),
-    path('categorias/<int:id>/', views.detail_categoria, name='detail_categoria'),
+    path('categorias/', views.ListaCategoria.as_view(), name='lista_categorias'),
+    path('categorias/new/', views.CreateCategoria.as_view(), name='create_categoria'),
+    path('categorias/<int:id>/', views.DetailCategoria.as_view(), name='detail_categoria'),
+    path('categorias/<int:id>/update/', views.update_categoria, name='update_categoria'),
+    path('categorias/<int:id>/delete/', views.delete_categoria, name='delete_categoria'),
 ]
