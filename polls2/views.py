@@ -101,3 +101,45 @@ class FirstCBView(View):
 
 class SecondConversor(FirstCBView):
     template = 'polls2/conversor_2.html'
+
+
+# DRY: Don't Repeat Yourself
+from django.views.generic import TemplateView
+
+
+class IndexView(TemplateView):
+    template_name = 'index.html'
+
+
+from django.views.generic import FormView
+
+
+class ConversorSuperPower(FormView):
+    form_class = Conversor
+    template_name = 'polls2/conversor.html'
+
+
+from .models import Category
+def lista_categorias(request):
+    categorias = Category.objects.all()
+    return render(
+        request=request,
+        template_name='polls2/lista_categorias.html',
+        context={'categorias': categorias}
+    )
+
+
+def create_categoria(request):
+    from .forms import CategoryForm
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print("DADOS VALIDADOS!!!")
+    else:
+        form = CategoryForm()
+    return render(
+        request=request,
+        template_name='polls2/create_categoria.html',
+        context={'form':form},
+    )
