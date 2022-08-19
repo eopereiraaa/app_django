@@ -11,8 +11,8 @@ from django.db import models
 # 3. Executar a migração
 class Category(models.Model):
     # Definir uma tabela no banco de dados
-    # É utilizada pelo sistema de migracoes para aplicar cambios no banco de dados.
-    # Criar registros em forma de instancias da clase
+    # É utilizada pelo sistema de migracoes para aplicar mudanças no banco de dados.
+    # Criar registros em forma de instâncias da classe
     # A possibilidade de fazer CONSULTAS no banco de dados usando um MANAGER (.objects)
 
     category_id = models.IntegerField(primary_key=True, null=False)
